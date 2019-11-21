@@ -17,6 +17,37 @@ const COMBOS = [
 
 const KEY = {
     '1':'X',
-    '-1':'O'
+    '-1':'O',
+    'null':''
 };
+
+//Things that change - turn, winner, gameboard
+
+let turn, winner, gameboard;
+
+// We need to cache element references
+
+const squares = document.querySelectorAll('.square');
+
+document.querySelector('#gameboard').addEventListener('click', handleClick);
+document.querySelector('#reset').addEventListener('click',init);
+
+
+init();
+function init(){
+    winner = false;
+    turn = 1;
+    gameboard = [null,null,null,null,null,null,null,null,null];
+}
+
+
+function handleClick(evt) {
+    console.log(evt.target.dataset.index);
+    const selectedIndex = parseInt(evt.target.dataset.index);
+    gameboard[selectedIndex] = turn;
+    turn *= -1;
+    console.log(gameboard)
+}
+
+const message = document.getElementById('message');
 
